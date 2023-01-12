@@ -1,23 +1,25 @@
-# Erdőkár Nyilvántartó Rendszer
-
-# Készítette: Lászlók András (2022)
-
-# Az applikáció egy MySQL adatbázishoz kapcsolódik, amelyben a segítségével lekérdezéseket, feltöltéseket végezhetünk
-
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5 import uic
 
-import sys, mysql.connector
+import sys, mysql.connector, os
 
+"""Adatbáziskapcsolat konfigurálása"""
+config = {
+'user': 'yourusername',
+'password': 'yourpassword',
+'host': '127.0.0.1',
+'database': 'karositok',
+'raise_on_warnings': True
+}
 
 class GazdLekerdWindow(QWidget):
     """Erdőgazdálkodók adatainak lekérése"""
 
     def __init__(self, *args, **kwargs):
         super(GazdLekerdWindow,self).__init__(*args, **kwargs)
-        uic.loadUi("connector_lekerd_gazd.ui",self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_lekerd_gazd.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -28,7 +30,7 @@ class GazdLekerdWindow(QWidget):
 
     def readMysqlTable(self):
 
-        mysqlConnection = mysql.connector.connect(**window.config)
+        mysqlConnection = mysql.connector.connect(**config)
         cursor = mysqlConnection.cursor()    
         mysql_select_query_one = ("SELECT * from gazdalkodo\
                             where gazdalkodo.id = %s")
@@ -59,7 +61,7 @@ class ReszlLekerdWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(ReszlLekerdWindow,self).__init__(*args, **kwargs)
-        uic.loadUi("connector_lekerd_reszl.ui",self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_lekerd_reszl.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -69,7 +71,7 @@ class ReszlLekerdWindow(QWidget):
 
     def readMysqlTable(self):
 
-        mysqlConnection = mysql.connector.connect(**window.config)
+        mysqlConnection = mysql.connector.connect(**config)
         cursor = mysqlConnection.cursor()    
         mysql_select_query_one = ("SELECT * from reszlet\
                             where reszlet.id = %s")
@@ -103,7 +105,7 @@ class KarLekerdWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(KarLekerdWindow,self).__init__(*args, **kwargs)
-        uic.loadUi("connector_lekerd_kar.ui",self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_lekerd_kar.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -113,7 +115,7 @@ class KarLekerdWindow(QWidget):
 
     def readMysqlTable(self):
 
-        mysqlConnection = mysql.connector.connect(**window.config)
+        mysqlConnection = mysql.connector.connect(**config)
         cursor = mysqlConnection.cursor()    
         mysql_select_query_one = ("SELECT * from karositas\
                             where karositas.id = %s")
@@ -148,7 +150,7 @@ class GazdFeltoltWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(GazdFeltoltWindow,self).__init__(*args, **kwargs)
-        uic.loadUi("connector_feltolt_gazd.ui",self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_feltolt_gazd.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -156,93 +158,108 @@ class GazdFeltoltWindow(QWidget):
 
     def insertMysqlTable(self):
 
-        mysqlConnection = mysql.connector.connect(**window.config)
-        cursor = mysqlConnection.cursor()    
-        mysql_insert_query = ("INSERT INTO gazdalkodo (nev, cim) \
-                                VALUES \
-                                (%s, %s);")
-        v_nev = self.textEdit.toPlainText()
-        v_cim = self.textEdit_2.toPlainText()
-        v_egyben = (v_nev, v_cim)
+        try:
 
-        cursor.execute(mysql_insert_query, v_egyben)
-        
-        mysqlConnection.commit()
-        self.label_3.setText(f'Sikeres feltöltés: {v_nev}')
-        cursor.close()
-        mysqlConnection.close()        
+            mysqlConnection = mysql.connector.connect(**config)
+            cursor = mysqlConnection.cursor()    
+            mysql_insert_query = ("INSERT INTO gazdalkodo (nev, cim) \
+                                    VALUES \
+                                    (%s, %s);")
+            v_nev = self.textEdit.toPlainText()
+            v_cim = self.textEdit_2.toPlainText()
+            v_egyben = (v_nev, v_cim)
+
+            cursor.execute(mysql_insert_query, v_egyben)
+            
+            mysqlConnection.commit()
+            self.label_3.setText(f'Sikeres feltöltés: {v_nev}')
+            cursor.close()
+            mysqlConnection.close()
+
+        except mysql.connector.Error as error:
+            print(f'Sikertelen feltöltés: {error}')
 
 class ReszlFeltoltWindow(QWidget):
     """Erdőrészlek adatainak feltöltése"""
 
     def __init__(self, *args, **kwargs):
         super(ReszlFeltoltWindow,self).__init__(*args, **kwargs)
-        uic.loadUi("connector_feltolt_reszl.ui",self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_feltolt_reszl.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
         self.pushButton.pressed.connect(self.insertMysqlTable)
 
     def insertMysqlTable(self):
-
-        mysqlConnection = mysql.connector.connect(**window.config)
-        cursor = mysqlConnection.cursor()    
-        mysql_insert_query = ("INSERT INTO reszlet (kozseg, tag, reszlet, gazd_id, faallomany) \
-                                VALUES \
-                                (%s, %s, %s, %s, %s);")
-        v_kozseg = self.textEdit.toPlainText()
-        v_tag = self.spinBox.value()
-        v_reszlet = self.textEdit_3.toPlainText()
-        v_gazd_id = self.spinBox_2.value()
-        v_faallomany = self.textEdit_2.toPlainText()
-        v_egyben = (v_kozseg, v_tag, v_reszlet, v_gazd_id, v_faallomany)
-
-        cursor.execute(mysql_insert_query, v_egyben)
         
-        mysqlConnection.commit()
-        self.label_3.setText(f'Sikeres feltöltés: {v_kozseg} {v_tag} {v_reszlet}')
-        cursor.close()
-        mysqlConnection.close()
+        try:
+
+            mysqlConnection = mysql.connector.connect(**config)
+            cursor = mysqlConnection.cursor()    
+            mysql_insert_query = ("INSERT INTO reszlet (kozseg, tag, reszlet, gazd_id, faallomany) \
+                                    VALUES \
+                                    (%s, %s, %s, %s, %s);")
+            v_kozseg = self.textEdit.toPlainText()
+            v_tag = self.spinBox.value()
+            v_reszlet = self.textEdit_3.toPlainText()
+            v_gazd_id = self.spinBox_2.value()
+            v_faallomany = self.textEdit_2.toPlainText()
+            v_egyben = (v_kozseg, v_tag, v_reszlet, v_gazd_id, v_faallomany)
+
+            cursor.execute(mysql_insert_query, v_egyben)
+            
+            mysqlConnection.commit()
+            self.label_3.setText(f'Sikeres feltöltés: {v_kozseg} {v_tag} {v_reszlet}')
+            cursor.close()
+            mysqlConnection.close()
+
+        except mysql.connector.Error as error:
+            print(f'Sikertelen feltöltés: {error}')
 
 class KarFeltoltWindow(QWidget):
     """Erdőkárok adatainak feltöltése"""
 
     def __init__(self, *args, **kwargs):
         super(KarFeltoltWindow,self).__init__(*args, **kwargs)
-        uic.loadUi("connector_feltolt_kar.ui",self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_feltolt_kar.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
         self.pushButton.pressed.connect(self.insertMysqlTable)
 
     def insertMysqlTable(self):
-
-        mysqlConnection = mysql.connector.connect(**window.config)
-        cursor = mysqlConnection.cursor()    
-        mysql_insert_query = ("INSERT INTO karositas (faj, reszlet_id, gazd_id, terulet, gyakorisag, karerely) \
-                                VALUES \
-                                (%s, %s, %s, %s, %s, %s);")
-        v_faj = self.textEdit.toPlainText()
-        v_reszlet_id = self.spinBox.value()
-        v_gazd_id = self.spinBox_2.value()
-        v_terulet = self.doubleSpinBox.value()
-        v_gyakorisag = self.spinBox_3.value()
-        v_karerely = self.spinBox_4.value()
-        v_egyben = (v_faj, v_reszlet_id, v_gazd_id, v_terulet, v_gyakorisag, v_karerely)
-
-        cursor.execute(mysql_insert_query, v_egyben)
         
-        mysqlConnection.commit()
-        self.label_3.setText(f'Sikeres feltöltés: {v_faj}')
-        cursor.close()
-        mysqlConnection.close()
+        try:
+
+            mysqlConnection = mysql.connector.connect(**config)
+            cursor = mysqlConnection.cursor()    
+            mysql_insert_query = ("INSERT INTO karositas (faj, reszlet_id, gazd_id, terulet, gyakorisag, karerely) \
+                                    VALUES \
+                                    (%s, %s, %s, %s, %s, %s);")
+            v_faj = self.textEdit.toPlainText()
+            v_reszlet_id = self.spinBox.value()
+            v_gazd_id = self.spinBox_2.value()
+            v_terulet = self.doubleSpinBox.value()
+            v_gyakorisag = self.spinBox_3.value()
+            v_karerely = self.spinBox_4.value()
+            v_egyben = (v_faj, v_reszlet_id, v_gazd_id, v_terulet, v_gyakorisag, v_karerely)
+
+            cursor.execute(mysql_insert_query, v_egyben)
+            
+            mysqlConnection.commit()
+            self.label_3.setText(f'Sikeres feltöltés: {v_faj}')
+            cursor.close()
+            mysqlConnection.close()
+
+        except mysql.connector.Error as error:
+            print(f'Sikertelen feltöltés: {error}')
 
 class OsszLekerdWindow(QWidget):
     """Összevont lekérdezés a három tábla legfontosabb adataival"""
 
     def __init__(self, *args, **kwargs):
         super(OsszLekerdWindow,self).__init__(*args, **kwargs)
-        uic.loadUi("connector_lekerd_ossz.ui",self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_lekerd_ossz.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -254,7 +271,7 @@ class OsszLekerdWindow(QWidget):
 
     def readMysqlTable(self):
 
-        mysqlConnection = mysql.connector.connect(**window.config)
+        mysqlConnection = mysql.connector.connect(**config)
         cursor = mysqlConnection.cursor()    
         mysql_select_query = ("SELECT gazdalkodo.nev, karositas.faj,\
                             reszlet.kozseg, reszlet.tag, reszlet.reszlet, karositas.terulet, \
@@ -284,11 +301,11 @@ class OsszLekerdWindow(QWidget):
         mysqlConnection.close()
 
 class MainWindow(QMainWindow):
-    """Főablak: Itt történik a Widget osztályok példányosítása"""
+    """Főablak"""
 
     def __init__(self, *args, **kwargs):
         super(MainWindow,self).__init__(*args, **kwargs)
-        uic.loadUi("connector_inventory_main.ui",self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_inventory_main.ui"),self)
         self.pushButton.pressed.connect(self.show_gazdlekerd_window)
         self.pushButton_2.pressed.connect(self.show_reszllekerd_window)
         self.pushButton_3.pressed.connect(self.show_karlekerd_window)
@@ -296,16 +313,6 @@ class MainWindow(QMainWindow):
         self.pushButton_5.pressed.connect(self.show_reszlfeltolt_window)
         self.pushButton_6.pressed.connect(self.show_karfeltolt_window)
         self.pushButton_7.pressed.connect(self.show_osszlekerd_window)
-        
-        
-        """Adatbáziskapcsolat konfigurálása"""
-        self.config = {
-        'user': 'yourusername',
-        'password': 'yourpassword',
-        'host': '127.0.0.1',
-        'database': 'karositok',
-        'raise_on_warnings': True
-        }
 
     def show_gazdlekerd_window(self):
         self.gl = GazdLekerdWindow()
@@ -335,8 +342,11 @@ class MainWindow(QMainWindow):
         self.ol = OsszLekerdWindow()
         self.ol.show()
 
-app = QApplication(sys.argv)
+def run():
+    """Modul futtatása"""
+    
+    app = QApplication(sys.argv)
 
-window = MainWindow()
-window.show()
-app.exec_()
+    window = MainWindow()
+    window.show()
+    app.exec_()
