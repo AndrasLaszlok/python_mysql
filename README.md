@@ -6,7 +6,7 @@ A program egy MySQL adatbázishoz kapcsolódik, amelyről lekérdezéseket lehet
 illetve ahova új adatokat lehet feltölteni.
 Hobbiprojekt.
 Az ui fájlok Qt Designerrel készültek.
-Futtatásához PyQt5 modul, illetve MySQl Connector telepítése szükséges.
+Futtatásához PyQt5 modul, illetve MySQL Connector telepítése szükséges.
 A program működése feltételezi egy megfelelő struktúrájú és nevű MySQL/MariaDB adatbázis meglétét. Jelen formájában inkább csak mintaként szolgál, az adatbázis nélkül nem használható.
 A repository root mappájából a "python -m inventory" paranccsal futtatható.
 
