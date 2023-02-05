@@ -3,7 +3,9 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5 import uic
 
-import sys, mysql.connector, os
+import sys
+import mysql.connector
+import os
 
 """Adatbáziskapcsolat konfigurálása"""
 config = {
