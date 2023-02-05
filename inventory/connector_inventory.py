@@ -19,7 +19,8 @@ class GazdLekerdWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(GazdLekerdWindow,self).__init__(*args, **kwargs)
-        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_lekerd_gazd.ui"),self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),
+            "connector_lekerd_gazd.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -49,9 +50,12 @@ class GazdLekerdWindow(QWidget):
 
         for row_number in enumerate(records):
 
-                self.tableWidget.setItem(row_number[0],0, QTableWidgetItem(str(row_number[1][0])))
-                self.tableWidget.setItem(row_number[0],1, QTableWidgetItem(str(row_number[1][1]))) 
-                self.tableWidget.setItem(row_number[0],2, QTableWidgetItem(str(row_number[1][2]))) 
+                self.tableWidget.setItem(row_number[0],0,
+                    QTableWidgetItem(str(row_number[1][0])))
+                self.tableWidget.setItem(row_number[0],1,
+                    QTableWidgetItem(str(row_number[1][1]))) 
+                self.tableWidget.setItem(row_number[0],2,
+                    QTableWidgetItem(str(row_number[1][2]))) 
 
         cursor.close()
         mysqlConnection.close()
@@ -61,7 +65,8 @@ class ReszlLekerdWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(ReszlLekerdWindow,self).__init__(*args, **kwargs)
-        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_lekerd_reszl.ui"),self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),
+            "connector_lekerd_reszl.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -90,12 +95,18 @@ class ReszlLekerdWindow(QWidget):
 
         for row_number in enumerate(records):
 
-                self.tableWidget.setItem(row_number[0],0, QTableWidgetItem(str(row_number[1][0])))
-                self.tableWidget.setItem(row_number[0],1, QTableWidgetItem(str(row_number[1][1]))) 
-                self.tableWidget.setItem(row_number[0],2, QTableWidgetItem(str(row_number[1][2])))
-                self.tableWidget.setItem(row_number[0],3, QTableWidgetItem(str(row_number[1][3]))) 
-                self.tableWidget.setItem(row_number[0],4, QTableWidgetItem(str(row_number[1][4]))) 
-                self.tableWidget.setItem(row_number[0],5, QTableWidgetItem(str(row_number[1][5]))) 
+                self.tableWidget.setItem(row_number[0],0,
+                    QTableWidgetItem(str(row_number[1][0])))
+                self.tableWidget.setItem(row_number[0],1,
+                    QTableWidgetItem(str(row_number[1][1]))) 
+                self.tableWidget.setItem(row_number[0],2,
+                    QTableWidgetItem(str(row_number[1][2])))
+                self.tableWidget.setItem(row_number[0],3,
+                    QTableWidgetItem(str(row_number[1][3]))) 
+                self.tableWidget.setItem(row_number[0],4,
+                    QTableWidgetItem(str(row_number[1][4]))) 
+                self.tableWidget.setItem(row_number[0],5,
+                    QTableWidgetItem(str(row_number[1][5]))) 
 
         cursor.close()
         mysqlConnection.close()
@@ -105,7 +116,8 @@ class KarLekerdWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(KarLekerdWindow,self).__init__(*args, **kwargs)
-        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_lekerd_kar.ui"),self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),
+            "connector_lekerd_kar.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -134,13 +146,20 @@ class KarLekerdWindow(QWidget):
 
         for row_number in enumerate(records):
 
-                self.tableWidget.setItem(row_number[0],0, QTableWidgetItem(str(row_number[1][0])))
-                self.tableWidget.setItem(row_number[0],1, QTableWidgetItem(str(row_number[1][1]))) 
-                self.tableWidget.setItem(row_number[0],2, QTableWidgetItem(str(row_number[1][2])))
-                self.tableWidget.setItem(row_number[0],3, QTableWidgetItem(str(row_number[1][3]))) 
-                self.tableWidget.setItem(row_number[0],4, QTableWidgetItem(str(row_number[1][4]))) 
-                self.tableWidget.setItem(row_number[0],5, QTableWidgetItem(str(row_number[1][5])))
-                self.tableWidget.setItem(row_number[0],6, QTableWidgetItem(str(row_number[1][6]))) 
+                self.tableWidget.setItem(row_number[0],0,
+                    QTableWidgetItem(str(row_number[1][0])))
+                self.tableWidget.setItem(row_number[0],1,
+                    QTableWidgetItem(str(row_number[1][1]))) 
+                self.tableWidget.setItem(row_number[0],2,
+                    QTableWidgetItem(str(row_number[1][2])))
+                self.tableWidget.setItem(row_number[0],3,
+                    QTableWidgetItem(str(row_number[1][3]))) 
+                self.tableWidget.setItem(row_number[0],4,
+                    QTableWidgetItem(str(row_number[1][4]))) 
+                self.tableWidget.setItem(row_number[0],5,
+                    QTableWidgetItem(str(row_number[1][5])))
+                self.tableWidget.setItem(row_number[0],6,
+                    QTableWidgetItem(str(row_number[1][6]))) 
 
         cursor.close()
         mysqlConnection.close()
@@ -150,7 +169,8 @@ class GazdFeltoltWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(GazdFeltoltWindow,self).__init__(*args, **kwargs)
-        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_feltolt_gazd.ui"),self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),
+            "connector_feltolt_gazd.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -184,7 +204,8 @@ class ReszlFeltoltWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(ReszlFeltoltWindow,self).__init__(*args, **kwargs)
-        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_feltolt_reszl.ui"),self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),
+            "connector_feltolt_reszl.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -196,7 +217,8 @@ class ReszlFeltoltWindow(QWidget):
 
             mysqlConnection = mysql.connector.connect(**config)
             cursor = mysqlConnection.cursor()    
-            mysql_insert_query = ("INSERT INTO reszlet (kozseg, tag, reszlet, gazd_id, faallomany) \
+            mysql_insert_query = ("INSERT INTO reszlet (kozseg, tag,\
+                                    reszlet, gazd_id, faallomany) \
                                     VALUES \
                                     (%s, %s, %s, %s, %s);")
             v_kozseg = self.textEdit.toPlainText()
@@ -209,7 +231,8 @@ class ReszlFeltoltWindow(QWidget):
             cursor.execute(mysql_insert_query, v_egyben)
             
             mysqlConnection.commit()
-            self.label_3.setText(f'Sikeres feltöltés: {v_kozseg} {v_tag} {v_reszlet}')
+            message = (f'Sikeres feltöltés: {v_kozseg} {v_tag} {v_reszlet}')
+            self.label_3.setText(message)
             cursor.close()
             mysqlConnection.close()
 
@@ -221,7 +244,8 @@ class KarFeltoltWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(KarFeltoltWindow,self).__init__(*args, **kwargs)
-        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_feltolt_kar.ui"),self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),
+            "connector_feltolt_kar.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -233,7 +257,8 @@ class KarFeltoltWindow(QWidget):
 
             mysqlConnection = mysql.connector.connect(**config)
             cursor = mysqlConnection.cursor()    
-            mysql_insert_query = ("INSERT INTO karositas (faj, reszlet_id, gazd_id, terulet, gyakorisag, karerely) \
+            mysql_insert_query = ("INSERT INTO karositas (faj, reszlet_id, \
+                                    gazd_id, terulet, gyakorisag, karerely) \
                                     VALUES \
                                     (%s, %s, %s, %s, %s, %s);")
             v_faj = self.textEdit.toPlainText()
@@ -242,7 +267,8 @@ class KarFeltoltWindow(QWidget):
             v_terulet = self.doubleSpinBox.value()
             v_gyakorisag = self.spinBox_3.value()
             v_karerely = self.spinBox_4.value()
-            v_egyben = (v_faj, v_reszlet_id, v_gazd_id, v_terulet, v_gyakorisag, v_karerely)
+            v_egyben = (v_faj, v_reszlet_id, v_gazd_id,
+                        v_terulet, v_gyakorisag, v_karerely)
 
             cursor.execute(mysql_insert_query, v_egyben)
             
@@ -259,7 +285,8 @@ class OsszLekerdWindow(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(OsszLekerdWindow,self).__init__(*args, **kwargs)
-        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_lekerd_ossz.ui"),self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),
+            "connector_lekerd_ossz.ui"),self)
         layout = QVBoxLayout()
         self.setLayout(layout)
         
@@ -274,8 +301,9 @@ class OsszLekerdWindow(QWidget):
         mysqlConnection = mysql.connector.connect(**config)
         cursor = mysqlConnection.cursor()    
         mysql_select_query = ("SELECT gazdalkodo.nev, karositas.faj,\
-                            reszlet.kozseg, reszlet.tag, reszlet.reszlet, karositas.terulet, \
-                            karositas.gyakorisag, karositas.karerely \
+                            reszlet.kozseg, reszlet.tag, reszlet.reszlet,\
+                            karositas.terulet, karositas.gyakorisag,\
+                            karositas.karerely \
                             from gazdalkodo, karositas, reszlet \
                             where gazdalkodo.id = karositas.gazd_id \
                             and reszlet.id = karositas.reszlet_id \
@@ -288,14 +316,22 @@ class OsszLekerdWindow(QWidget):
 
         for row_number in enumerate(records):
 
-                self.tableWidget.setItem(row_number[0],0, QTableWidgetItem(str(row_number[1][0])))
-                self.tableWidget.setItem(row_number[0],1, QTableWidgetItem(str(row_number[1][1]))) 
-                self.tableWidget.setItem(row_number[0],2, QTableWidgetItem(str(row_number[1][2]))) 
-                self.tableWidget.setItem(row_number[0],3, QTableWidgetItem(str(row_number[1][3]))) 
-                self.tableWidget.setItem(row_number[0],4, QTableWidgetItem(str(row_number[1][4]))) 
-                self.tableWidget.setItem(row_number[0],5, QTableWidgetItem(str(row_number[1][5])))
-                self.tableWidget.setItem(row_number[0],6, QTableWidgetItem(str(row_number[1][6]))) 
-                self.tableWidget.setItem(row_number[0],7, QTableWidgetItem(str(row_number[1][7])))  
+                self.tableWidget.setItem(row_number[0],0,
+                    QTableWidgetItem(str(row_number[1][0])))
+                self.tableWidget.setItem(row_number[0],1,
+                    QTableWidgetItem(str(row_number[1][1]))) 
+                self.tableWidget.setItem(row_number[0],2,
+                    QTableWidgetItem(str(row_number[1][2]))) 
+                self.tableWidget.setItem(row_number[0],3,
+                    QTableWidgetItem(str(row_number[1][3]))) 
+                self.tableWidget.setItem(row_number[0],4,
+                    QTableWidgetItem(str(row_number[1][4]))) 
+                self.tableWidget.setItem(row_number[0],5,
+                    QTableWidgetItem(str(row_number[1][5])))
+                self.tableWidget.setItem(row_number[0],6,
+                    QTableWidgetItem(str(row_number[1][6]))) 
+                self.tableWidget.setItem(row_number[0],7,
+                    QTableWidgetItem(str(row_number[1][7])))  
 
         cursor.close()
         mysqlConnection.close()
@@ -305,7 +341,8 @@ class MainWindow(QMainWindow):
 
     def __init__(self, *args, **kwargs):
         super(MainWindow,self).__init__(*args, **kwargs)
-        uic.loadUi(os.path.join(os.path.dirname(__file__),"connector_inventory_main.ui"),self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__),
+            "connector_inventory_main.ui"),self)
         self.pushButton.pressed.connect(self.show_gazdlekerd_window)
         self.pushButton_2.pressed.connect(self.show_reszllekerd_window)
         self.pushButton_3.pressed.connect(self.show_karlekerd_window)
