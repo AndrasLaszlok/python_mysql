@@ -54,11 +54,11 @@ class GazdLekerdWindow(QWidget):
         for row_number in enumerate(records):
 
                 self.tableWidget.setItem(
-                    row_number[0],0,QTableWidgetItem(str(row_number[1][0])))
+                    row_number[0],0, QTableWidgetItem(str(row_number[1][0])))
                 self.tableWidget.setItem(
-                    row_number[0],1,QTableWidgetItem(str(row_number[1][1]))) 
+                    row_number[0],1, QTableWidgetItem(str(row_number[1][1]))) 
                 self.tableWidget.setItem(
-                    row_number[0],2,QTableWidgetItem(str(row_number[1][2]))) 
+                    row_number[0],2, QTableWidgetItem(str(row_number[1][2]))) 
 
         cursor.close()
         mysqlConnection.close()
@@ -100,17 +100,17 @@ class ReszlLekerdWindow(QWidget):
         for row_number in enumerate(records):
 
                 self.tableWidget.setItem(
-                    row_number[0],0,QTableWidgetItem(str(row_number[1][0])))
+                    row_number[0],0, QTableWidgetItem(str(row_number[1][0])))
                 self.tableWidget.setItem(
-                    row_number[0],1,QTableWidgetItem(str(row_number[1][1]))) 
+                    row_number[0],1, QTableWidgetItem(str(row_number[1][1]))) 
                 self.tableWidget.setItem(
-                    row_number[0],2,QTableWidgetItem(str(row_number[1][2])))
+                    row_number[0],2, QTableWidgetItem(str(row_number[1][2])))
                 self.tableWidget.setItem(
-                    row_number[0],3,QTableWidgetItem(str(row_number[1][3]))) 
+                    row_number[0],3, QTableWidgetItem(str(row_number[1][3]))) 
                 self.tableWidget.setItem(
-                    row_number[0],4,QTableWidgetItem(str(row_number[1][4]))) 
+                    row_number[0],4, QTableWidgetItem(str(row_number[1][4]))) 
                 self.tableWidget.setItem(
-                    row_number[0],5,QTableWidgetItem(str(row_number[1][5]))) 
+                    row_number[0],5, QTableWidgetItem(str(row_number[1][5]))) 
 
         cursor.close()
         mysqlConnection.close()
@@ -152,19 +152,19 @@ class KarLekerdWindow(QWidget):
         for row_number in enumerate(records):
 
                 self.tableWidget.setItem(
-                    row_number[0],0,QTableWidgetItem(str(row_number[1][0])))
+                    row_number[0],0, QTableWidgetItem(str(row_number[1][0])))
                 self.tableWidget.setItem(
-                    row_number[0],1,QTableWidgetItem(str(row_number[1][1]))) 
+                    row_number[0],1, QTableWidgetItem(str(row_number[1][1]))) 
                 self.tableWidget.setItem(
-                    row_number[0],2,QTableWidgetItem(str(row_number[1][2])))
+                    row_number[0],2, QTableWidgetItem(str(row_number[1][2])))
                 self.tableWidget.setItem(
-                    row_number[0],3,QTableWidgetItem(str(row_number[1][3]))) 
+                    row_number[0],3, QTableWidgetItem(str(row_number[1][3]))) 
                 self.tableWidget.setItem(
-                    row_number[0],4,QTableWidgetItem(str(row_number[1][4]))) 
+                    row_number[0],4, QTableWidgetItem(str(row_number[1][4]))) 
                 self.tableWidget.setItem(
-                    row_number[0],5,QTableWidgetItem(str(row_number[1][5])))
+                    row_number[0],5, QTableWidgetItem(str(row_number[1][5])))
                 self.tableWidget.setItem(
-                    row_number[0],6,QTableWidgetItem(str(row_number[1][6]))) 
+                    row_number[0],6, QTableWidgetItem(str(row_number[1][6]))) 
 
         cursor.close()
         mysqlConnection.close()
@@ -325,19 +325,19 @@ class OsszLekerdWindow(QWidget):
         for row_number in enumerate(records):
 
                 self.tableWidget.setItem(
-                    row_number[0],0,QTableWidgetItem(str(row_number[1][0])))
+                    row_number[0],0, QTableWidgetItem(str(row_number[1][0])))
                 self.tableWidget.setItem(
-                    row_number[0],1,QTableWidgetItem(str(row_number[1][1]))) 
+                    row_number[0],1, QTableWidgetItem(str(row_number[1][1]))) 
                 self.tableWidget.setItem(
-                    row_number[0],2,QTableWidgetItem(str(row_number[1][2]))) 
+                    row_number[0],2, QTableWidgetItem(str(row_number[1][2]))) 
                 self.tableWidget.setItem(
-                    row_number[0],3,QTableWidgetItem(str(row_number[1][3]))) 
+                    row_number[0],3, QTableWidgetItem(str(row_number[1][3]))) 
                 self.tableWidget.setItem(
-                    row_number[0],4,QTableWidgetItem(str(row_number[1][4]))) 
+                    row_number[0],4, QTableWidgetItem(str(row_number[1][4]))) 
                 self.tableWidget.setItem(
-                    row_number[0],5,QTableWidgetItem(str(row_number[1][5])))
+                    row_number[0],5, QTableWidgetItem(str(row_number[1][5])))
                 self.tableWidget.setItem(
-                    row_number[0],6,QTableWidgetItem(str(row_number[1][6]))) 
+                    row_number[0],6, QTableWidgetItem(str(row_number[1][6]))) 
                 self.tableWidget.setItem(
                     row_number[0],7, QTableWidgetItem(str(row_number[1][7])))  
 
